@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import {useAppSelector} from '../Redux/hook'
-import { IState } from '../Redux/interfaces'
+import { IState } from '../types/interfaces'
 import { Props } from './interfaces'
 
 const PublicRoute = ({ children}: Props) => {

@@ -1,5 +1,5 @@
 import { createSlice, AnyAction, PayloadAction } from "@reduxjs/toolkit";
-import { IUser, IInitialState } from "./interfaces";
+import { IUser, IInitialState } from "../types/interfaces";
 import {
   registration,
   logIn,
@@ -13,6 +13,7 @@ const initialState: IInitialState = {
   user: {
     name: "",
     email: "",
+    password: "",
     availableLeasons: [],
   },
   token: "",
@@ -54,6 +55,7 @@ export const authSlice = createSlice({
         state.user = {
           name: "",
           email: "",
+          password: "",
           availableLeasons: [],
         };
         state.token = "";

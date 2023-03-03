@@ -1,6 +1,7 @@
 export interface IUser {
-  name: string;
+  name?: string;
   email: string;
+  password: string;
   availableLeasons: Number[];
   avatarURL?: string;
 }
@@ -26,4 +27,20 @@ export interface IResponse {
 }
 export interface IError {
   message: string;
+}
+export interface ILesson {
+  id: string;
+  lessonAudio: { webContentLink: string };
+  lessonNumber: string;
+  lessonText: [
+    {
+      words: string[];
+      transcription?: string[];
+      translations: string[];
+      explanation?: string[];
+      question?: string[];
+      answers?: string[];
+    }
+  ];
+  stage: Number | null;
 }

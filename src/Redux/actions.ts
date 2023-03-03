@@ -1,11 +1,11 @@
 import { createAction } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IUser, IState, IResponse, IError } from "./interfaces";
+import { IUser, IState, IResponse, IError } from "../types/interfaces";
 
 export const changeFilter = createAction("contacts/changeFilter");
 
-axios.defaults.baseURL = "https://phonebook-be.onrender.com/api/";
+axios.defaults.baseURL = "http://localhost:3001/api";
 
 const token = {
   set(token: string) {
@@ -120,7 +120,7 @@ export const updateAvailableLeasons = createAsyncThunk<
   { rejectValue: IError }
 >("auth/updateAvailableLeasons", async (lesons, { rejectWithValue }) => {
   try {
-    const { data } = await axios.patch("/users/avaliableLesons", lesons);
+    const { data } = await axios.patch("/users/availableLessons", lesons);
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
