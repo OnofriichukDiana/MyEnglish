@@ -10,20 +10,18 @@ import Button from "@mui/material/Button";
 const StartPage = () => {
   const [lesson, setLesson] = useState<ILesson>({
     id: "",
-    lessonAudio: { webContentLink: "" },
+    lessonAudio: "",
     lessonNumber: "",
-    lessonText: [{ words: [], translations: [], question: [], answers: [] }],
+    lessonText: "",
     stage: null,
   });
   const [englishLevel, setEnglishLevel] = useState<string>("");
-
   const handleChange = (event: SelectChangeEvent) => {
     setEnglishLevel(event.target.value);
   };
-
   const getLesson = async () => {
     const response = await axios.get(
-      "http://localhost:3001/api/lessons/test/1"
+      "http://localhost:3001/api/lessons/test/60"
     );
     setLesson(response.data);
   };
@@ -31,7 +29,6 @@ const StartPage = () => {
     getLesson();
   }, []);
   const { id, lessonAudio, lessonNumber, lessonText, stage } = lesson;
-
   return (
     <div>
       <Typography variant="subtitle1" gutterBottom>
@@ -51,7 +48,6 @@ const StartPage = () => {
         <Typography variant="subtitle1" gutterBottom>
           Виберіть свій рівень англійської, щоб отримати тестовий урок
         </Typography>
-
         <Select
           id="demo-simple-select-required"
           value={englishLevel}
@@ -67,11 +63,20 @@ const StartPage = () => {
           Підтвердити
         </Button>
       </form>
-
-      {lessonAudio.webContentLink !== "" && (
-        <audio controls={true} preload="auto">
-          <source src={lessonAudio.webContentLink} type="audio/mp3" />
-        </audio>
+      {lessonAudio !== "" && (
+        <div>
+          <audio controls={true} preload="auto">
+            <source src={lessonAudio} type="audio/mp3" />
+          </audio>
+          <div>
+            <iframe
+              src={lessonText}
+              width="640"
+              height="490"
+              allow="autoplay"
+            ></iframe>
+          </div>
+        </div>
       )}
     </div>
   );

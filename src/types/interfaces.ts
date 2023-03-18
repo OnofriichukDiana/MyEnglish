@@ -30,17 +30,11 @@ export interface IError {
 }
 export interface ILesson {
   id: string;
-  lessonAudio: { webContentLink: string };
+  lessonAudio: string;
   lessonNumber: string;
-  lessonText: [
-    {
-      words: string[];
-      transcription?: string[];
-      translations: string[];
-      explanation?: string[];
-      question?: string[];
-      answers?: string[];
-    }
-  ];
-  stage: Number | null;
+  lessonText: string;
+  stage: number | null;
+}
+export interface IProps {
+  children: JSX.Element;
 }
